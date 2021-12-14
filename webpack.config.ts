@@ -31,14 +31,12 @@ const config: Configuration = {
       },
       {
         test: /\.s?css$/,
-        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               sourceMap: true,
-              importLoaders: 1,
             },
           },
           {
@@ -46,7 +44,6 @@ const config: Configuration = {
             options: {
               sourceMap: true,
             },
-
           },
         ],
       },

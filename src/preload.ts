@@ -4,12 +4,13 @@ contextBridge.exposeInMainWorld('myAPI', {
   openDialog: async (): Promise<void | string[]> =>
     await ipcRenderer.invoke('open-dialog'),
 
-  connectDB: () => {
-    ipcRenderer.invoke('connect')
+  test: async () => {
+    const result = await ipcRenderer.invoke('test')
+    return result;
+  },
+  connect: async () => {
+    const result = await ipcRenderer.invoke('connect')
+    return result;
   }
-});
 
-contextBridge.exposeInMainWorld('connectDB', {
-  openDialog: async (): Promise<void | string[]> =>
-    await ipcRenderer.invoke('open-dialog'),
 });

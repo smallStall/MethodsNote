@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { useTable, Column } from 'react-table';
+import { useEffect } from 'react';
 import './Table.module.scss';
 type Props<T extends object> = {
   columns: Column<T>[];
@@ -16,6 +17,13 @@ type TableNewProps<T extends object> = Pick<
 export function Table<T extends object>(props: Props<T>) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable<T>(props);
+  useEffect(() => {
+    const nohoho = async () => {
+      const str = await window.myAPI.connect();
+      console.log(str);
+    };
+    nohoho();
+  }, []);
 
   return (
     <table {...getTableProps()} className="nohoho">

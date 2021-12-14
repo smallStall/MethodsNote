@@ -2,7 +2,9 @@ import path from 'path';
 import fs from 'fs';
 import { BrowserWindow, app, session, ipcMain, dialog } from 'electron';
 import { searchDevtools } from 'electron-search-devtools';
-import Database from 'better-sqlite3';
+import { MikroORM } from '@mikro-orm/core';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+// const Database = require('better-sqlite3-multiple-ciphers');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -35,6 +37,7 @@ const createWindow = () => {
 
   // 'open-dialog' チャネルに受信
   ipcMain.handle('open-dialog', async () => {
+
     // フォルダ選択ダイアログを開いてディレクトリパスを取得する
     const dirpath = await dialog
       .showOpenDialog(mainWindow, {
@@ -69,12 +72,32 @@ const createWindow = () => {
 
     return filelist;
   });
-  ipcMain.handle('connect', () => {
-    const db = new Database('assets/lkh.db', { fileMustExist: true, verbose: console.log })
-    const row = db.prepare('SELECT * FROM project WHERE id = ?').get(1);
-    console.log(row.name);
-    return;
+  ipcMain.handle('test', () => {
+    /*
+const db = new Database('assets/hehehe.db');
+db.pragma("rekey='secretKey'");
+db.close();
+*/
+    return 'nhohoo';
   });
+  ipcMain.handle('connect', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    /*knex
+    const knex = require('knex')({
+      client: 'sqlite3',
+      connection: () => ({
+        filename: "assets/lkh.db"
+      })
+    });
+    return knex.select("*").from('project');
+    */
+    const orm = await MikroORM.init({
+      entities: [Author],
+      dbName: 'my-db-name',
+      type: 'sqlite', // one of `mongo` | `mysql` | `mariadb` | `postgresql` | `sqlite`
+    });
+  });
+
 };
 
 app.whenReady().then(async () => {

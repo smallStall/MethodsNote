@@ -45,16 +45,6 @@ const base: Configuration = {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-
-              additionalData: (content: string, loaderContext: { resourcePath: string, rootContext: string }) => {
-                const { resourcePath, rootContext } = loaderContext;
-                const relativePath = path.relative(rootContext, resourcePath);
-                if (relativePath.indexOf("web/component") > -1) {
-                  return "@import '../variables.scss/n';" + content;
-                }
-                return content;
-              },
-
             },
           },
         ],

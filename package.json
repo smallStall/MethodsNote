@@ -1,7 +1,7 @@
 {
   "name": "methodsnote",
-  "description": "An Electron boilerplate with hot reloading for React and TypeScript.",
-  "version": "1.1.1",
+  "description": "The electronic note in chemistry or cooking",
+  "version": "0.0.1",
   "license": "PolyForm Small Business License 1.0.0",
   "repository": {
     "type": "git",
@@ -29,18 +29,29 @@
     "lint:eslint": "eslint . --ext .ts,.tsx --fix",
     "lint:prettier": "prettier --write ."
   },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts"
+    ]
+  },
   "dependencies": {
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
-    "@journeyapps/sqlcipher": "^5.2.0",
+    "@mikro-orm/core": "^4.5.9",
+    "@mikro-orm/reflection": "^4.5.9",
+    "@mikro-orm/sqlite": "^4.5.9",
     "@mui/material": "^5.2.1",
-    "@mui/x-data-grid": "^5.0.1",
     "better-sqlite3": "^7.4.0",
+    "better-sqlite3-multiple-ciphers": "^7.4.5",
+    "knex": "^0.95.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-table": "^7.7.0"
+    "react-table": "^7.7.0",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
+    "@mikro-orm/cli": "^4.5.9",
     "@types/better-sqlite3": "^7.4.1",
     "@types/mini-css-extract-plugin": "^2.4.0",
     "@types/node": "^16.11.6",

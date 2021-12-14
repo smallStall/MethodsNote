@@ -6,6 +6,7 @@ declare global {
 
 export interface Sandbox {
   openDialog: () => Promise<void | string[]>;
-  connectDB: () => void;
+  test: () => string;
+  connect: () => Promise<void | string[]>;
 }
 
