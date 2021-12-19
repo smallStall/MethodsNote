@@ -9,4 +9,3 @@ export interface Sandbox {
   test: () => string;
   connect: () => Promise<void | string[]>;
 }
-

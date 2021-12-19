@@ -3,6 +3,8 @@ import fs from 'fs';
 import { BrowserWindow, app, session, ipcMain, dialog } from 'electron';
 import { searchDevtools } from 'electron-search-devtools';
 import { MikroORM } from '@mikro-orm/core';
+import { Book } from './infra/entities/book';
+import options from './mikro-orm.config';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 // const Database = require('better-sqlite3-multiple-ciphers');
 
@@ -91,11 +93,19 @@ db.close();
     });
     return knex.select("*").from('project');
     */
-    const orm = await MikroORM.init({
-      entities: [Author],
-      dbName: 'my-db-name',
-      type: 'sqlite', // one of `mongo` | `mysql` | `mariadb` | `postgresql` | `sqlite`
+    const orm = await MikroORM.init(options);
+    /*const orm = await MikroORM.init({
+      entities: [Book],
+      dbName: 'my-db-name.db',
+      type: 'sqlite'
     });
+    */
+    const bookRepository = orm.em.getRepository(Book);
+    const newBook = new Book();
+    newBook.title = "のっほそ";
+    await bookRepository.persistAndFlush(newBook);
+    const books = await bookRepository.findAll();
+    return books;
   });
 
 };

@@ -6,9 +6,10 @@ import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
 const options: Options<SqliteDriver> = {
   driver: SqliteDriver,
   metadataProvider: TsMorphMetadataProvider,
-  //entities: ["./src/entities/*.js"],
-  entitiesTs: ["./src/entities/*.ts"],
-  dbName: 'mydb',
+  entities: ["dist/infra/entities/*.js"],
+  entitiesTs: ["src/infra/entities/*.ts"],
+  dbName: './assets/nohoho.db',
+  type: 'sqlite',
 };
 
 export default options;
