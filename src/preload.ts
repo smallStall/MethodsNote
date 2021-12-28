@@ -12,5 +12,4 @@ contextBridge.exposeInMainWorld('myAPI', {
     const result = await ipcRenderer.invoke('connect')
     return result;
   }
-
 });

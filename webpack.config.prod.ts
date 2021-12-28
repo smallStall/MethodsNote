@@ -81,12 +81,12 @@ const renderer: Configuration = {
   ...base,
   target: 'web',
   entry: {
-    index: './src/web/index.tsx',
+    index: './src/presentation/index.tsx',
   },
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/web/index.html',
+      template: './src/presentation/index.html',
       minify: !isDev,
       inject: 'body',
       filename: 'index.html',
